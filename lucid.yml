@@ -1,0 +1,38 @@
+---
+general:
+  bind_address: 0.0.0.0
+  port: 7020
+  port_ssl: 7021
+  use_ssl: false
+  ssl_certificate: ""
+  ssl_certificate_key: ""
+  show_banner: false
+
+authentication:
+  enabled: false
+  root_token: ""
+  secret_key: ""
+
+persistence:
+  enabled: false
+  location: ""
+
+encryption:
+  enabled: false
+  private_key: ""
+  iv: ""
+
+webui:
+  enabled: false
+
+store:
+  max_limit: 7340032
+
+http:
+  request_size_limit: 8388608
+
+logging:
+  level: INFO
+  outputs:
+    - type: stdout
+      colored: false

@@ -1,0 +1,23 @@
+variant: fcos
+version: 1.0.0
+systemd:
+  units:
+    - name: docker.service
+      mask: true
+    - name: vultrkv.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Vultr Key Value Store
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=-/bin/podman kill vultrkv
+        ExecStartPre=-/bin/podman rm vultrkv
+        ExecStartPre=/bin/podman pull okinta/vultrkv
+        ExecStart=/bin/podman run -p 7020:7020/tcp --name vultrkv okinta/vultrkv
+
+        [Install]
+        WantedBy=multi-user.target

@@ -13,4 +13,4 @@ API key.
 
 ## Check FCOS Config Syntax
 
-    fcct --strict < ignition.fcc > /dev/null
+    fcct --strict < coreos.fcc > /dev/null

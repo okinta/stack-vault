@@ -1,0 +1,19 @@
+systemd:
+  units:
+    - name: vultrkv.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Vultr Key Value Store
+        After=docker.service
+        Wants=docker.service
+
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=-/usr/bin/docker kill vultrkv
+        ExecStartPre=-/usr/bin/docker rm vultrkv
+        ExecStartPre=/usr/bin/docker pull okinta/vultrkv
+        ExecStart=/usr/bin/docker run -p 7020:7020/tcp --name vultrkv okinta/vultrkv
+
+        [Install]
+        WantedBy=multi-user.target

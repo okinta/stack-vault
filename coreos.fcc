@@ -2,20 +2,20 @@ variant: fcos
 version: 1.0.0
 systemd:
   units:
-    - name: vultrkv.service
+    - name: vault.service
       enabled: true
       contents: |
         [Unit]
-        Description=Vultr Key Value Store
+        Description=Vault
         After=network-online.target
         Wants=network-online.target
 
         [Service]
         TimeoutStartSec=0
-        ExecStartPre=-/bin/podman kill vultrkv
-        ExecStartPre=-/bin/podman rm vultrkv
-        ExecStartPre=/bin/podman pull okinta/vultrkv
-        ExecStart=/bin/podman run -p 7020:7020/tcp --name vultrkv okinta/vultrkv
+        ExecStartPre=-/bin/podman kill vault
+        ExecStartPre=-/bin/podman rm vault
+        ExecStartPre=/bin/podman pull okinta/stack-vault
+        ExecStart=/bin/podman run -p 7020:7020/tcp --name vault okinta/stack-vault
 
         [Install]
         WantedBy=multi-user.target

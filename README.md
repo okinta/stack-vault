@@ -35,11 +35,11 @@ to add them can be found in LastPass.
 
 ### Build
 
-    docker build -t okinta/vultrkv .
+    docker build -t okinta/stack-vault .
 
 ### Run
 
-    docker run -p 7020:7020 okinta/vultrkv
+    docker run -p 7020:7020 okinta/stack-vault
 
 ### Check FCOS Config Syntax
 

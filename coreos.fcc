@@ -2,8 +2,6 @@ variant: fcos
 version: 1.0.0
 systemd:
   units:
-    - name: docker.service
-      mask: true
     - name: vultrkv.service
       enabled: true
       contents: |

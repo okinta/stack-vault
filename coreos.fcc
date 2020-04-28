@@ -19,3 +19,24 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
+
+    - name: algasetup.service
+      enabled: true
+      contents:  |
+        [Unit]
+        Description=Set up services for Alga
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=oneshot
+        ExecStartPre=-/bin/podman kill algasetup
+        ExecStartPre=-/bin/podman rm algasetup
+        ExecStartPre=/bin/podman pull okinta/algasetup
+        ExecStart=/bin/podman run --name algasetup okinta/algasetup
+
+        [Timer]
+        OnCalendar=Mon..Fri 8:30 EST
+
+        [Install]
+        WantedBy=multi-user.target

@@ -40,3 +40,24 @@ systemd:
 
         [Install]
         WantedBy=multi-user.target
+
+    - name: algasetup-teardown.service
+      enabled: false
+      contents:  |
+        [Unit]
+        Description=Deletes services for Alga
+        After=network-online.target
+        Wants=network-online.target
+
+        [Service]
+        Type=oneshot
+        ExecStartPre=-/bin/podman kill algasetup-teardown
+        ExecStartPre=-/bin/podman rm algasetup-teardown
+        ExecStartPre=/bin/podman pull okinta/algasetup
+        ExecStart=/bin/podman run --name algasetup-teardown okinta/algasetup teardown
+
+        [Timer]
+        OnCalendar=Mon..Fri 17:00 EST
+
+        [Install]
+        WantedBy=multi-user.target

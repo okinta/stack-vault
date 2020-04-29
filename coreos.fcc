@@ -21,7 +21,7 @@ systemd:
         WantedBy=multi-user.target
 
     - name: algasetup.service
-      enabled: true
+      enabled: false
       contents:  |
         [Unit]
         Description=Set up services for Alga

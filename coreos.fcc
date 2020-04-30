@@ -35,6 +35,15 @@ systemd:
         ExecStartPre=/bin/podman pull okinta/algasetup
         ExecStart=/bin/podman run --name algasetup okinta/algasetup
 
+        [Install]
+        WantedBy=multi-user.target
+
+    - name: algasetup.timer
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run algasetup.service every weekday morning
+
         [Timer]
         OnCalendar=Mon..Fri 8:30 EST
 
@@ -55,6 +64,18 @@ systemd:
         ExecStartPre=-/bin/podman rm algasetup-teardown
         ExecStartPre=/bin/podman pull okinta/algasetup
         ExecStart=/bin/podman run --name algasetup-teardown okinta/algasetup teardown
+
+        [Timer]
+        OnCalendar=Mon..Fri 17:00 EST
+
+        [Install]
+        WantedBy=multi-user.target
+
+    - name: algasetup-teardown.timer
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Run algasetup-teardown.service every weekday afternoon
 
         [Timer]
         OnCalendar=Mon..Fri 17:00 EST

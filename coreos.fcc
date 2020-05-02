@@ -1,5 +1,10 @@
 variant: fcos
 version: 1.0.0
+passwd:
+  users:
+    - name: algasetup
+      system: true
+
 systemd:
   units:
     - name: vault.service
@@ -30,6 +35,7 @@ systemd:
 
         [Service]
         Type=oneshot
+        User=algasetup
         ExecStartPre=-/bin/podman kill algasetup
         ExecStartPre=-/bin/podman rm algasetup
         ExecStartPre=/bin/podman pull okinta/algasetup
@@ -60,6 +66,7 @@ systemd:
 
         [Service]
         Type=oneshot
+        User=algasetup
         ExecStartPre=-/bin/podman kill algasetup-teardown
         ExecStartPre=-/bin/podman rm algasetup-teardown
         ExecStartPre=/bin/podman pull okinta/algasetup

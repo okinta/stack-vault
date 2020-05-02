@@ -38,8 +38,8 @@ systemd:
         User=algasetup
         ExecStartPre=-/bin/podman kill algasetup
         ExecStartPre=-/bin/podman rm algasetup
-        ExecStartPre=/bin/podman pull okinta/algasetup
-        ExecStart=/bin/podman run --name algasetup okinta/algasetup
+        ExecStartPre=/bin/podman pull registry.hub.docker.com/okinta/algasetup
+        ExecStart=/bin/podman run --name algasetup registry.hub.docker.com/okinta/algasetup
 
         [Install]
         WantedBy=multi-user.target
@@ -69,8 +69,8 @@ systemd:
         User=algasetup
         ExecStartPre=-/bin/podman kill algasetup-teardown
         ExecStartPre=-/bin/podman rm algasetup-teardown
-        ExecStartPre=/bin/podman pull okinta/algasetup
-        ExecStart=/bin/podman run --name algasetup-teardown okinta/algasetup teardown
+        ExecStartPre=/bin/podman pull registry.hub.docker.com/okinta/algasetup
+        ExecStart=/bin/podman run --name algasetup-teardown registry.hub.docker.com/okinta/algasetup teardown
 
         [Timer]
         OnCalendar=Mon..Fri 17:00 EST

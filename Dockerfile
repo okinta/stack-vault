@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
 RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/* \
-    && wget https://github.com/lucid-kv/lucid/releases/download/0.1.4/lucid-linux.tar.gz \
+    && wget https://s3.okinta.ge/lucid-linux-0.1.4.tar.gz \
     && tar -xzf lucid-linux.tar.gz \
     && mv lucid /usr/local/bin \
     && rm -f lucid-linux.tar.gz \

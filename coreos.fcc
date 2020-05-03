@@ -3,7 +3,6 @@ version: 1.0.0
 passwd:
   users:
     - name: algasetup
-      system: true
 
 systemd:
   units:

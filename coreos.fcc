@@ -3,6 +3,7 @@ version: 1.0.0
 passwd:
   users:
     - name: algasetup
+    - name: vault
 
 systemd:
   units:
@@ -15,6 +16,7 @@ systemd:
         Wants=network-online.target
 
         [Service]
+        User=vault
         TimeoutStartSec=0
         ExecStartPre=-/bin/podman kill vault
         ExecStartPre=-/bin/podman rm vault

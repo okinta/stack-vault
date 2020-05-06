@@ -40,9 +40,6 @@ systemd:
         ExecStartPre=/bin/podman pull okinta/algasetup
         ExecStart=/bin/podman run --name algasetup okinta/algasetup
 
-        [Install]
-        WantedBy=multi-user.target
-
     - name: algasetup.timer
       enabled: true
       contents: |
@@ -68,9 +65,6 @@ systemd:
         ExecStartPre=-/bin/podman rm algasetup-teardown
         ExecStartPre=/bin/podman pull okinta/algasetup
         ExecStart=/bin/podman run --name algasetup-teardown okinta/algasetup teardown
-
-        [Install]
-        WantedBy=multi-user.target
 
     - name: algasetup-teardown.timer
       enabled: true

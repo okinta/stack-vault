@@ -31,8 +31,6 @@ systemd:
       contents:  |
         [Unit]
         Description=Set up services for Alga
-        After=network-online.target
-        Wants=network-online.target
 
         [Service]
         Type=oneshot
@@ -62,8 +60,6 @@ systemd:
       contents:  |
         [Unit]
         Description=Deletes services for Alga
-        After=network-online.target
-        Wants=network-online.target
 
         [Service]
         Type=oneshot

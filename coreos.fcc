@@ -47,7 +47,7 @@ systemd:
         Description=Run algasetup.service every weekday morning
 
         [Timer]
-        OnCalendar=Mon..Fri 8:30 ET
+        OnCalendar=Mon..Fri 8:30 America/New_York
 
         [Install]
         WantedBy=multi-user.target
@@ -73,7 +73,7 @@ systemd:
         Description=Run algasetup-teardown.service every weekday afternoon
 
         [Timer]
-        OnCalendar=Mon..Fri 17:00 ET
+        OnCalendar=Mon..Fri 17:00 America/New_York
 
         [Install]
         WantedBy=multi-user.target

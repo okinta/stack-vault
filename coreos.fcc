@@ -2,7 +2,6 @@ variant: fcos
 version: 1.0.0
 passwd:
   users:
-    - name: algasetup
     - name: vault
 
 systemd:
@@ -22,58 +21,6 @@ systemd:
         ExecStartPre=-/bin/podman rm vault
         ExecStartPre=/bin/podman pull okinta/stack-vault
         ExecStart=/bin/podman run -p 7020:7020/tcp --name vault okinta/stack-vault
-
-        [Install]
-        WantedBy=multi-user.target
-
-    - name: algasetup.service
-      enabled: false
-      contents:  |
-        [Unit]
-        Description=Set up services for Alga
-
-        [Service]
-        Type=oneshot
-        User=algasetup
-        ExecStartPre=-/bin/podman kill algasetup
-        ExecStartPre=-/bin/podman rm algasetup
-        ExecStartPre=/bin/podman pull okinta/algasetup
-        ExecStart=/bin/podman run --name algasetup okinta/algasetup
-
-    - name: algasetup.timer
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run algasetup.service every weekday morning
-
-        [Timer]
-        OnCalendar=Mon..Fri 8:30 America/New_York
-
-        [Install]
-        WantedBy=multi-user.target
-
-    - name: algasetup-teardown.service
-      enabled: false
-      contents:  |
-        [Unit]
-        Description=Deletes services for Alga
-
-        [Service]
-        Type=oneshot
-        User=algasetup
-        ExecStartPre=-/bin/podman kill algasetup-teardown
-        ExecStartPre=-/bin/podman rm algasetup-teardown
-        ExecStartPre=/bin/podman pull okinta/algasetup
-        ExecStart=/bin/podman run --name algasetup-teardown okinta/algasetup teardown
-
-    - name: algasetup-teardown.timer
-      enabled: true
-      contents: |
-        [Unit]
-        Description=Run algasetup-teardown.service every weekday afternoon
-
-        [Timer]
-        OnCalendar=Mon..Fri 17:00 America/New_York
 
         [Install]
         WantedBy=multi-user.target
